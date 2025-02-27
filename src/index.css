@@ -1,0 +1,247 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fcc53c;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: scroll;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.app-container {
+  padding: 1rem;
+  max-width: 28rem;
+  border-radius: 0.5rem;
+  flex: 1;
+}
+
+.restaurant-header {
+  padding: 1rem;
+  background-color: #f7e478;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.restaurant-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0.3rem;
+  margin-bottom: 0rem;
+}
+
+.category-filter {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.category-button {
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  background-color: #e5e7eb;
+  color: #000;
+  text-align: center;
+  cursor: pointer;
+}
+
+.category-button.active {
+  background-color: #f7e478;
+  color: #c15b02;
+}
+
+.dish-list {
+  margin-top: 1rem;
+}
+
+.dish-card {
+  background-color: #f7e478;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center contents horizontally */
+}
+
+.dish-title {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.2;
+  padding: 0;
+}
+
+.dish-container {
+  position: relative;
+  width: 100%; /* Fit within dish-card, respecting padding */
+  max-width: 400px; /* Cap at 400px but allow shrinking */
+  height: 200px;
+  margin: 0 auto; /* Center within dish-card */
+}
+
+.dish-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.stars {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  color: gold;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.price {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.restaurant-image {
+  width: 100%; /* Fit within restaurant-header, respecting padding */
+  max-width: 400px; /* Cap at 400px but allow shrinking */
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.plus-icon {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: #16a34a;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.plus-icon svg {
+  color: white;
+  font-size: 16px;
+}
+
+.no-dishes-message {
+  text-align: center;
+  color: #6b7280;
+}
+
+/* Customer Cart Styles */
+.customer-cart {
+  background-color: #f7e478;
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  width: 100%;
+  max-width: 28rem;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.customer-cart.visible {
+  padding: 0.5rem;
+  height: auto;
+  max-height: 20vh;
+}
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.hide-cart-button {
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #c15b02;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hide-cart-button svg {
+  font-size: 14px;
+}
+
+.cart-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.cart-item {
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+}
+
+.cart-total {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+/* Cart Toggle Button */
+.cart-toggle-button {
+  position: fixed;
+  bottom: 1rem;
+  left: calc(50% - 13rem + 1rem);
+  background-color: #f7e478;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid #c15b02;
+  z-index: 10;
+}
+
+.cart-toggle-button svg {
+  font-size: 20px;
+  color: #c15b02;
+}
