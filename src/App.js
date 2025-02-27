@@ -31,7 +31,7 @@ const translateText = async (text, targetLang) => {
   }
 
   try {
-    const response = await fetch("https://libretranslate.com/translate", {
+    const response = await fetch("http://localhost:5000/translate", {
       method: "POST",
       body: JSON.stringify({
         q: text,
@@ -42,6 +42,10 @@ const translateText = async (text, targetLang) => {
       headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
+    if (data.error) {
+      console.error("LibreTranslate error:", data.error);
+      return text; // Fallback to English on error
+    }
     const translatedText = data.translatedText;
     translationCache[targetLang][text] = translatedText; // Cache the result
     return translatedText;
@@ -55,7 +59,7 @@ const App = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [cartItems, setCartItems] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
-  const [language, setLanguage] = useState("swe");
+  const [language, setLanguage] = useState("en");
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [translatedDishes, setTranslatedDishes] = useState(menuData.dish_list);
 
