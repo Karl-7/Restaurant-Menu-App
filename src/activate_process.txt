@@ -17,7 +17,7 @@ To push your local changes to the main branch of your GitHub repository, follow 
 3.Add the remote repository (if not already added):
     git remote add origin https://github.com/Karl-7/Restaurant-Menu-App.git
 4.Stage your changes:
-    git add app.js
+    git add app.js (or any file you changed)
 5.Commit your changes with a descriptive message:
     git commit -m "Update app.js with new features"
 6.Pull the latest changes from the main branch to ensure your local repository is up-to-date:
