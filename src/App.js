@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaPlus, FaShoppingCart, FaArrowDown } from "react-icons/fa";
+import { FaPlus, FaShoppingCart, FaArrowDown, FaMinus } from "react-icons/fa";
 import "./index.css";
 
 const menuData = {
@@ -85,6 +85,10 @@ const App = () => {
     setIsCartVisible(true);
   };
 
+  const removeFromCart = (indexToRemove) => {
+    setCartItems((prevItems) => prevItems.filter((_, index) => index !== indexToRemove));
+  };
+
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
       const priceNum = parseFloat(item.price.replace("kr", ""));
@@ -105,6 +109,10 @@ const App = () => {
     setIsLangMenuOpen(false);
   };
 
+  const handleCheckout = () => {
+    window.location.href = "/checkout"; // Simple redirect instead of React Router
+  };
+
   return (
     <div className="app-wrapper">
       <div className="app-container">
@@ -115,23 +123,13 @@ const App = () => {
             className="restaurant-image"
             onError={(e) => console.log("Restaurant image failed:", e)}
           />
-          <h2 className="restaurant-title">Restaurant Name</h2>
-          <div className="language-switcher" style={{ position: "absolute", top: 10, right: 10 }}>
+          <h2 className="restaurant-title">Giorgio's Italiano</h2>
+          <div className="language-switcher">
             <button onClick={toggleLangMenu} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
               {language === "swe" ? "🇸🇪 SWE" : language === "es" ? "🇪🇸 ES" : "🇬🇧 ENG"}
             </button>
             {isLangMenuOpen && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "100%",
-                  right: 0,
-                  background: "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                  padding: "5px",
-                }}
-              >
+              <div className="language-dropdown">
                 <button
                   onClick={() => changeLanguage("en")}
                   style={{ display: "flex", alignItems: "center", gap: "5px", width: "100%" }}
@@ -161,7 +159,7 @@ const App = () => {
               className={`category-button ${activeCategory === cat ? "active" : ""}`}
               onClick={() => setActiveCategory(cat)}
             >
-              {cat} {/* Categories untranslated; can extend translateText if needed */}
+              {cat}
             </button>
           ))}
         </div>
@@ -192,19 +190,27 @@ const App = () => {
       </div>
       <div className={`customer-cart ${isCartVisible ? "visible" : ""}`}>
         <div className="cart-header">
+          <h3 className="cart-title">Customer's Cart</h3>
           <button className="hide-cart-button" onClick={() => setIsCartVisible(false)}>
             <FaArrowDown />
           </button>
-          <h3 className="cart-title">Customer's Cart</h3>
         </div>
         {cartItems.length > 0 && isCartVisible ? (
           <>
             {cartItems.map((item, index) => (
               <div key={index} className="cart-item">
                 {item.name} - {item.price}
+                <button className="remove-item-button" onClick={() => removeFromCart(index)}>
+                  <FaMinus />
+                </button>
               </div>
             ))}
-            <div className="cart-total">Total: {calculateTotal()}</div>
+            <div className="cart-footer">
+              <div className="cart-total">Total: {calculateTotal()}</div>
+              <button className="checkout-button" onClick={handleCheckout}>
+                Checkout
+              </button>
+            </div>
           </>
         ) : null}
       </div>

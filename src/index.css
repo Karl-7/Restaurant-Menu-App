@@ -26,6 +26,7 @@ body {
 }
 
 .restaurant-header {
+  position: relative; /* Added to position language-switcher relative to header */
   padding: 1rem;
   background-color: #f7e478;
   border-radius: 0.5rem;
@@ -77,6 +78,7 @@ body {
 .dish-title {
   font-weight: bold;
   text-align: center;
+  
   font-size: 1.2rem;
   margin: 0;
   line-height: 1.2;
@@ -134,7 +136,7 @@ body {
   position: absolute;
   bottom: 10px;
   left: 10px;
-  background-color: #16a34a;
+  background-color: #ffae00;
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -158,36 +160,35 @@ body {
 .customer-cart {
   background-color: #f7e478;
   border-radius: 0.5rem 0.5rem 0 0;
-  padding: 0;
+  padding: 0; /* Set to 0 when closed */
   height: 0;
   overflow: hidden;
-  transition: height 0.3s ease;
+  transition: all 0.3s ease; /* Change to 'all' to include padding in transition */
   width: 100%;
   max-width: 28rem;
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 20;
+  z-index: 30; /* Updated from above */
 }
 
 .customer-cart.visible {
-  padding: 0.5rem;
   height: auto;
-  max-height: 20vh;
+  max-height: 30vh;
+  padding: 0.5rem; /* Add padding only when visible */
+  overflow-y: auto;
 }
 
 .cart-header {
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: space-between; /* Space out title and button */
+  padding: 0 0.5rem;
 }
 
 .hide-cart-button {
-  position: absolute;
-  left: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
   background-color: #c15b02;
   color: white;
   border: none;
@@ -207,21 +208,77 @@ body {
 .cart-title {
   font-size: 1rem;
   font-weight: bold;
-  margin: 0 auto;
-  text-align: center;
-  flex-grow: 1;
+  margin: 0;
 }
 
 .cart-item {
   font-size: 0.9rem;
   margin: 0.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remove-item-button {
+  background-color: #dc2626; /* Red color for remove */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.remove-item-button svg {
+  font-size: 12px;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
 }
 
 .cart-total {
   font-size: 1rem;
   font-weight: bold;
-  margin-top: 0.5rem;
-  text-align: right;
+}
+
+.checkout-button {
+  background-color: #16a34a; /* Green color for checkout */
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+/* Move language switcher to top-right of restaurant image */
+.language-switcher {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.language-switcher button {
+  
+  background-color:  rgb(238, 246, 0); /* Blue color for the toggle button */
+  color: #0025fa ; /* Yellow text for the toggle button */
+  border: none; /* Optional: removes default button border */
+  padding: 5px 10px; /* Optional: adds some padding for better appearance */
+  border-radius: 4px; /* Optional: matches dropdown’s border-radius */
+  cursor: pointer; /* Optional: indicates it’s clickable */
+}
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  border-radius: 4px;
+  padding: 5px;
 }
 
 /* Cart Toggle Button */
