@@ -1,0 +1,27 @@
+1. we need a docker in our computer
+2. (only first time setting): we run in terminal:
+    docker run -it -p 5000:5000 libretranslate/libretranslate
+3. we make sure:
+    cd restaurant-menu
+4. we run:
+    npm start
+
+
+
+TO UPLOAD:
+To push your local changes to the main branch of your GitHub repository, follow these steps:
+1.Open your terminal and navigate to your project directory:
+    cd path/to/your/Restaurant-Menu-App
+2.Initialize Git (if you haven't already):
+    git init
+3.Add the remote repository (if not already added):
+    git remote add origin https://github.com/Karl-7/Restaurant-Menu-App.git
+4.Stage your changes:
+    git add app.js
+5.Commit your changes with a descriptive message:
+    git commit -m "Update app.js with new features"
+6.Pull the latest changes from the main branch to ensure your local repository is up-to-date:
+    git pull origin main
+7.Resolve any merge conflicts if they arise;
+  Push your changes to the main branch:
+    git push origin main
