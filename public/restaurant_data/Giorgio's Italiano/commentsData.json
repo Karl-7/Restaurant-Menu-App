@@ -1,0 +1,22 @@
+[
+  {"text": "Sehr gut! Lecker!", "rating": 5, "avatar": "🐨", "timestamp": "2025-02-01T10:00:00Z", "dish": "pasta1"},
+  {"text": "wtf is this shit!", "rating": 2, "avatar": "🐱", "timestamp": "2025-02-02T14:30:00Z", "dish": "burger1"},
+  {"text": "Not bad, could be better.", "rating": 3, "avatar": "🐻", "timestamp": "2025-02-06T16:20:00Z", "dish": "lasagna1"},
+  {"text": "Det är men toll! Jag tycker denna dish! mmmms!", "rating": 3, "avatar": "🦃", "timestamp": "2025-02-03T09:15:00Z", "dish": "pasta1"},
+  {"text": "Amazing dish, loved it!", "rating": 4, "avatar": "🐶", "timestamp": "2025-02-04T18:45:00Z", "dish": "burger1"},
+  {"text": "Best pasta ever!", "rating": 5, "avatar": "🐰", "timestamp": "2025-02-05T12:00:00Z", "dish": "pasta1"},
+  {"text": "Too salty for my taste.", "rating": 2, "avatar": "🐷", "timestamp": "2025-02-07T13:10:00Z", "dish": "lasagna1"},
+  {"text": "Really fresh ingredients!", "rating": 4, "avatar": "🐸", "timestamp": "2025-02-08T09:00:00Z", "dish": "pasta1"},
+  {"text": "Burger was decent, bun was stale.", "rating": 3, "avatar": "🐵", "timestamp": "2025-02-09T15:25:00Z", "dish": "burger1"},
+  {"text": "Worth every penny!", "rating": 5, "avatar": "🦁", "timestamp": "2025-02-10T11:30:00Z", "dish": "pasta1"},
+  {"text": "Lasagna was a bit cold.", "rating": 3, "avatar": "🐘", "timestamp": "2025-02-11T17:40:00Z", "dish": "lasagna1"},
+  {"text": "Quick service, great food!", "rating": 4, "avatar": "🐹", "timestamp": "2025-02-12T12:15:00Z", "dish": "burger1"},
+  {"text": "Pizza was crispy and delicious!", "rating": 5, "avatar": "🦊", "timestamp": "2025-02-13T14:00:00Z", "dish": "pizza1"},
+  {"text": "Salad was too bland.", "rating": 2, "avatar": "🐦", "timestamp": "2025-02-14T10:30:00Z", "dish": "salad1"},
+  {"text": "Loved the cheese on this!", "rating": 4, "avatar": "🐭", "timestamp": "2025-02-15T16:45:00Z", "dish": "pizza1"},
+  {"text": "Pasta sauce was perfection.", "rating": 5, "avatar": "🦝", "timestamp": "2025-02-16T11:20:00Z", "dish": "pasta1"},
+  {"text": "Burger patty was overcooked.", "rating": 3, "avatar": "🐮", "timestamp": "2025-02-17T13:50:00Z", "dish": "burger1"},
+  {"text": "Lasagna layers were amazing!", "rating": 4, "avatar": "🐼", "timestamp": "2025-02-18T09:10:00Z", "dish": "lasagna1"},
+  {"text": "Salad dressing was too oily.", "rating": 2, "avatar": "🐍", "timestamp": "2025-02-19T15:00:00Z", "dish": "salad1"},
+  {"text": "Pizza delivery was fast!", "rating": 5, "avatar": "🐺", "timestamp": "2025-02-20T12:30:00Z", "dish": "pizza1"}
+]
