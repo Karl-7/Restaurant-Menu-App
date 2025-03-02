@@ -209,24 +209,46 @@
 }
 
 /* Triangle removed previously */
-
-.detail-back-button {
-  background-color: #f4db50bd;
-  color: #c15b02;
-  border: none;
-  border-radius: 0.25rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  font-size: 1rem;
-  font-weight: bold;
+.dish-detail-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 100%;
   max-width: 28rem;
+  height: auto; /* Content-driven height */
+  padding: 0rem;
+  /* padding-top: 0px; */
+  padding-left: 2px; 
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* New styles for the back button container */
+.detail-back-button-container {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  z-index: 10; /* Ensure it’s above other content */
+}
+
+.detail-back-button {
+  background-color: rgba(152, 246, 0, 0.911); /* Match language switcher’s blue */
+  color: #220597; /* Yellow to match language switcher */
+  border: none;
+  border-radius: 4px;
+  padding: 5px; /* Smaller padding for a compact square */
+  width: 30px; /* Fixed width for square shape */
+  height: 30px; /* Fixed height for square shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px; /* Adjust icon size */
+  transition: background-color 0.3s ease;
 }
 
 .detail-back-button:hover {
-  background-color: #ffae00;
-  color: white;
+  background-color: rgba(0, 4, 246, 0.9); /* Darker blue on hover */
 }
 
 /* Optional: Add transitions for consistency */
