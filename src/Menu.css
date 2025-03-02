@@ -296,7 +296,10 @@
   border-radius: 10px;
   padding: 5px 0px; /* Optional: adds some padding for better appearance */
 }
-
+.language-dropdown button:hover {
+  background-color: #f0f0f0; /* White background on hover */
+  color: #ff9500; /* Orange text on hover */
+}
 /* Cart Toggle Button */
 .cart-toggle-button {
   position: fixed;
