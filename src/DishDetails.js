@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaStar, FaRegStar } from "react-icons/fa";
+import { FaStar, FaRegStar ,FaArrowLeft} from "react-icons/fa";
 import "./DishDetails.css";
 
 const DishDetails = () => {
@@ -138,6 +138,12 @@ const DishDetails = () => {
     <div className="detail-body">
       <div className="background" style={backgroundStyle}></div>
       <div className="dish-detail-container">
+        {/* Add the new back button here */}
+        <div className="detail-back-button-container">
+          <button onClick={() => navigate(-1)} className="detail-back-button">
+            <FaArrowLeft />
+          </button>
+        </div>
         <div className="dish-detail-header">
           <img
             src={`/restaurant_data/Giorgio's Italiano/${dish.image}`}
@@ -185,9 +191,7 @@ const DishDetails = () => {
             <p>No comments yet for this dish.</p>
           )}
         </div>
-        <button onClick={() => navigate(-1)} className="detail-back-button">
-          Back to Menu
-        </button>
+        {/* Remove the old back button from here */}
       </div>
     </div>
   );
