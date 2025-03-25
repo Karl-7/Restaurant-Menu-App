@@ -1,0 +1,64 @@
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px
+  }
+  .itemContainer {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px
+  }
+  .itemHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px
+  }
+  .itemHeader .dishName {
+    font-weight: bold;
+  }
+  .itemHeader .quantity {
+    text-align: center
+  }
+  .itemHeader .order-price {
+    text-align: right;
+    color: #000
+  }
+  .commentSection {
+    margin-top: 10px
+  }
+  .commentInput {
+    width: 95%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-height: 60px
+  }
+  .divider {
+    margin: 20px 0;
+    border-color: #eee
+  }
+  .publishSection {
+    text-align: center
+  }
+  .publishButton {
+    background-color: #1890ff;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px
+  }
+  .advertisement {
+    color: #666;
+    font-style: italic;
+    font-size: 0.9em
+  }

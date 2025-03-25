@@ -1,0 +1,260 @@
+/* src/components/DishDetails.css */
+.detail-body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  overflow-y: auto; /* Scroll only if content exceeds viewport */
+}
+
+.dish-detail-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 28rem;
+  height: auto; /* Content-driven height */
+  padding: 1rem;
+  padding-top: 5px;
+  position: relative;
+  /* zIndex: 1; */
+  box-sizing: border-box;
+}
+
+.dish-detail-header {
+  padding: 1rem;
+  background-color: rgba(255, 215, 0, 0.5);
+  border-radius: 0.5rem;
+  text-align: center;
+  position: relative;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dish-detail-image {
+  width: 100%;
+  max-width: 400px; /* Enforce max-width only */
+  max-height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.dish-detail-info {
+  margin-top: 0.5rem;
+}
+
+.dish-detail-info h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.3rem 0 0.5rem 0;
+  line-height: 1.2;
+  color: #333;
+}
+
+.dish-detail-info p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+/* Language Switcher (Translation Button and Dropdown) */
+.detail-language-switcher {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+}
+
+.detail-language-switcher button {
+  background-color: rgba(0, 4, 246, 0.7);
+  color: #cfcf02;
+  border: none;
+  padding: 5px 7px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.detail-language-switcher button:hover {
+  background-color: rgba(0, 4, 246, 0.9);
+}
+
+.detail-language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 5px 0;
+  /* min-width: 60px; */
+}
+
+.detail-language-dropdown button {
+  background-color: rgba(0, 4, 246, 0.5);
+  color: #cfcf02;
+  border: none;
+  padding: 5px 5px;
+  width: 100%;
+  cursor: pointer;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.detail-language-dropdown button:hover {
+  background-color: #f0f0f0;
+  color: #ff9500;
+}
+
+/* .translation-button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+  max-width: 28rem;
+} */
+
+/* .translation-button:hover {
+  background-color: #357abd;
+} */
+
+.dish-detail-ratings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  background-color: rgba(255, 215, 0, 0.5);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rating-sorts {
+  font-size: 0.9rem;
+  color: #362700;
+}
+
+.detail-rating-stars {
+  font-size: 18px;
+  background-color: #00000096;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  color: gold;
+}
+
+.dish-comments {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 223, 0, 0.5);
+  border-radius: 0.5rem;
+}
+
+.dish-comment {
+  background-color: #b4e485;
+  border: 2px solid #ff993f;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.comment-icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.comment-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 1;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.comment-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.comment-stars {
+  font-size: 14px;
+  color: gold;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+/* Triangle removed previously */
+.dish-detail-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 28rem;
+  height: auto; /* Content-driven height */
+  padding: 0rem;
+  /* padding-top: 0px; */
+  padding-left: 2px; 
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* New styles for the back button container */
+.detail-back-button-container {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  z-index: 10; /* Ensure it’s above other content */
+}
+
+.detail-back-button {
+  background-color: rgba(152, 246, 0, 0.911); /* Match language switcher’s blue */
+  color: #220597; /* Yellow to match language switcher */
+  border: none;
+  border-radius: 4px;
+  padding: 5px; /* Smaller padding for a compact square */
+  width: 30px; /* Fixed width for square shape */
+  height: 30px; /* Fixed height for square shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px; /* Adjust icon size */
+  transition: background-color 0.3s ease;
+}
+
+.detail-back-button:hover {
+  background-color: rgba(0, 4, 246, 0.9); /* Darker blue on hover */
+}
+
+/* Optional: Add transitions for consistency */
+.dish-detail-header,
+.dish-detail-ratings,
+.dish-comment,
+.detail-back-button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
