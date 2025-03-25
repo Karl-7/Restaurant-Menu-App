@@ -13,6 +13,7 @@ const menuData = {
 
 const languageCodes = { en: "en", swe: "sv", es: "es" };
 
+
 // Local cache for translations
 const translationCache = {
   en: {},
