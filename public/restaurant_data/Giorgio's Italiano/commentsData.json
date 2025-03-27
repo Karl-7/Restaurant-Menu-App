@@ -18,5 +18,13 @@
   {"text": "Burger patty was overcooked.", "rating": 3, "avatar": "🐮", "timestamp": "2025-02-17T13:50:00Z", "dish": "burger1"},
   {"text": "Lasagna layers were amazing!", "rating": 4, "avatar": "🐼", "timestamp": "2025-02-18T09:10:00Z", "dish": "lasagna1"},
   {"text": "Salad dressing was too oily.", "rating": 2, "avatar": "🐍", "timestamp": "2025-02-19T15:00:00Z", "dish": "salad1"},
-  {"text": "Pizza delivery was fast!", "rating": 5, "avatar": "🐺", "timestamp": "2025-02-20T12:30:00Z", "dish": "pizza1"}
+  {"text": "Pizza delivery was fast!", "rating": 5, "avatar": "🐺", "timestamp": "2025-02-20T12:30:00Z", "dish": "pizza1"},
+  {"text": "Classic and perfect!", "rating": 5, "avatar": "🍕", "timestamp": "2025-02-21T12:00:00Z", "dish": "Margherita1"},
+  {"text": "Best margherita I've ever had!", "rating": 5, "avatar": "🧀", "timestamp": "2025-02-22T13:15:00Z", "dish": "Margherita1"},
+  {"text": "Perfect amount of spice!", "rating": 4, "avatar": "🔥", "timestamp": "2025-02-21T14:30:00Z", "dish": "Pepperoni1"},
+  {"text": "Love the pepperoni!", "rating": 4, "avatar": "🐷", "timestamp": "2025-02-22T18:45:00Z", "dish": "Pepperoni1"},
+  {"text": "Fresh and crispy!", "rating": 5, "avatar": "🥗", "timestamp": "2025-02-21T11:20:00Z", "dish": "Salad1"},
+  {"text": "Perfect light meal", "rating": 4, "avatar": "🌱", "timestamp": "2025-02-23T12:30:00Z", "dish": "Salad1"},
+  {"text": "Crust was perfect!", "rating": 5, "avatar": "🍅", "timestamp": "2025-02-24T19:00:00Z", "dish": "pizza1"},
+  {"text": "Great cheese pull!", "rating": 4, "avatar": "🧀", "timestamp": "2025-02-25T13:45:00Z", "dish": "pizza1"}
 ]

@@ -26,3 +26,14 @@ body {
   position: relative;
   z-index: 1;
 }
+
+#root {
+  width: 100%;
+}
+
+@media (min-width: 400px) {
+  body {
+    width: 400px;
+    margin: 0 auto;
+  }
+}

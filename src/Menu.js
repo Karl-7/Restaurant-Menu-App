@@ -1,7 +1,8 @@
 // src/Menu.js
 import React, { useState, useEffect } from "react";
-import { FaPlus, FaShoppingCart, FaArrowDown, FaMinus } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { FaPlus, FaShoppingCart, FaArrowDown, FaMinus, FaInfoCircle } from "react-icons/fa";
+import { useParams, useNavigate } from "react-router-dom";
+import { FaStar, FaRegStar, FaArrowLeft } from "react-icons/fa";
 import "./Menu.css";
 
 const languageCodes = { en: "en", swe: "sv", es: "es" };
@@ -50,6 +51,7 @@ const translateText = async (text, targetLang) => {
 };
 
 const Menu = () => {
+  const { rId } = useParams();
   const [activeCategory, setActiveCategory] = useState("All");
   const [cartItems, setCartItems] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -98,10 +100,20 @@ const Menu = () => {
     return <div>Loading...</div>;
   }
 
-  const filteredDishes =
-    activeCategory === "All"
-      ? translatedDishes
-      : translatedDishes.filter((dish) => dish.category === activeCategory);
+  const filteredDishes = translatedDishes.filter((dish) => {
+    // Check if a dietary filter is active
+    const isDietaryFilterActive = ["Vegetarian", "Vegan", "Halal", "Gluten-Free"].includes(activeCategory);
+
+    // Handle category filtering
+    const isCategoryMatch =
+      isDietaryFilterActive || activeCategory === "All" || dish.category === activeCategory;
+
+    // Handle dietary filtering
+    const isDietaryMatch =
+      !isDietaryFilterActive || (dish.dietary && dish.dietary.includes(activeCategory));
+
+    return isCategoryMatch && isDietaryMatch;
+  });
 
   const addToCart = (dish) => {
     setCartItems((prevItems) => [...prevItems, { name: dish.name, price: dish.price }]);
@@ -138,32 +150,42 @@ const Menu = () => {
     navigate("/checkout");
   };
 
-  // Inline styles for dynamic background
-  const backgroundStyle = {
-    position: "fixed",
-    top: "-10px",
-    left: "-10px",
-    width: "calc(100% + 20px)",
-    height: "calc(100% + 20px)",
-    background: `url("/restaurant_data/Giorgio's Italiano/${menuData.restaurant_pic}") no-repeat center center/cover`,
-    filter: "blur(30px)",
-    zIndex: -1,
-  };
-
   return (
     <>
-      <div className="background" style={backgroundStyle}></div>
       <div className="content">
         <div className="app-wrapper">
+          <div className="detail-back-button-container">
+            <button onClick={() => navigate(-1)} className="detail-back-button">
+              <FaArrowLeft />
+            </button>
+          </div>
           <div className="app-container">
             <div className="restaurant-header">
-              <img
-                src={`/restaurant_data/Giorgio's Italiano/${menuData.restaurant_pic}`}
-                alt={menuData.restaurant_name}
-                className="restaurant-image"
-                onError={(e) => console.log("Restaurant image failed:", e)}
-              />
+              <div className="restaurant-image-container">
+                <img
+                  src={`/restaurant_data/Giorgio's Italiano/${menuData.restaurant_pic}`}
+                  alt={menuData.restaurant_name}
+                  className="restaurant-image"
+                  onError={(e) => console.log("Restaurant image failed:", e)}
+                />
+                <div
+                  className="discount-banner"
+                  onClick={() => navigate(`/restaurant/${rId}/discount`)}
+                >
+                  <span className="arrow left-arrow">➜</span>
+                  <span className="discount-text">Check ur Student Discounts!</span>
+                  <span className="arrow right-arrow">➜</span>
+                </div>
+              </div>
               <h2 className="restaurant-title">{menuData.restaurant_name}</h2>
+              <div className="info-button">
+                <button
+                  onClick={() => navigate(`/restaurant-info/${rId}`)}
+                  style={{ display: "flex", alignItems: "center", gap: "5px" }}
+                >
+                  <FaInfoCircle /> Info
+                </button>
+              </div>
               <div className="language-switcher">
                 <button onClick={toggleLangMenu} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
                   {language === "swe" ? "SWE" : language === "es" ? "SPA" : "ENG"}
@@ -192,16 +214,30 @@ const Menu = () => {
                 )}
               </div>
             </div>
-            <div className="category-filter">
-              {menuData.categories.map((cat) => (
+            {/* Dietary filter */}
+            <div className="dietary-filter">
+              {["All", "Vegetarian", "Vegan", "Halal", "Gluten-Free"].map((diet) => (
                 <button
-                  key={cat}
-                  className={`category-button ${activeCategory === cat ? "active" : ""}`}
-                  onClick={() => setActiveCategory(cat)}
+                  key={diet}
+                  className={`dietary-button ${activeCategory === diet ? "active" : ""}`}
+                  onClick={() => setActiveCategory(diet)}
                 >
-                  {cat}
+                  {diet}
                 </button>
               ))}
+            </div>
+            <div className="category-filter">
+              {menuData.categories
+                .filter((cat) => !["Vegetarian", "Vegan", "Halal", "Gluten-Free"].includes(cat))
+                .map((cat) => (
+                  <button
+                    key={cat}
+                    className={`category-button ${activeCategory === cat ? "active" : ""}`}
+                    onClick={() => setActiveCategory(cat)}
+                  >
+                    {cat}
+                  </button>
+                ))}
             </div>
             <div className="dish-list">
               {filteredDishes.length > 0 ? (

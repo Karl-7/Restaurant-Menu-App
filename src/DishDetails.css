@@ -233,7 +233,7 @@
 
 .detail-back-button {
   background-color: rgba(152, 246, 0, 0.911); /* Match language switcher’s blue */
-  color: #220597; /* Yellow to match language switcher */
+  color: #119705; /* Yellow to match language switcher */
   border: none;
   border-radius: 4px;
   padding: 5px; /* Smaller padding for a compact square */
@@ -248,7 +248,7 @@
 }
 
 .detail-back-button:hover {
-  background-color: rgba(0, 4, 246, 0.9); /* Darker blue on hover */
+  background-color: rgba(0, 103, 246, 0.9); /* Darker blue on hover */
 }
 
 /* Optional: Add transitions for consistency */

@@ -1,0 +1,58 @@
+/* src/DiscountPage.css */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.app-container {
+  padding: 1rem;
+  max-width: 28rem;
+  border-radius: 0.5rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.discount-container {
+  background-color: rgba(249, 212, 0, 0.5); /* Yellow transparent background */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.discount-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.discount-image {
+  width: 100%;
+  max-width: 300px; /* Cap the width */
+  height: auto; /* Let the height adjust naturally */
+  border-radius: 8px;
+}
+
+.detail-back-button-container {
+  padding: 1rem;
+  /* padding-top: 4.5rem; */
+  text-align: left;
+}
+
+.detail-back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #7efc00;
+}
