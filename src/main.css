@@ -6,7 +6,7 @@
   position: relative;
 }
 .personal-center {
-  position: fixed;
+  position: absolute;
   width: 30px;
   height: 30px;
   top: 21px;
