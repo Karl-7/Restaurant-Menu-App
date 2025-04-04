@@ -1,17 +1,16 @@
 .mainmenu {
   padding: 1rem;
-  /* max-width: 28rem;
-  border-radius: 0.5rem;
-  flex: 1 1; */
   position: relative;
 }
+
 .personal-center {
-  position: fixed;
+  position: absolute; /* Changed from fixed to absolute */
   width: 30px;
   height: 30px;
   top: 21px;
   margin-left: 10px;
 }
+
 .main-page {
   display: flex;
   flex-direction: column;
@@ -27,7 +26,7 @@
 
 .search-bar input {
   width: 100%;
-  padding: 10px 10px 10px 50px;
+  padding: 10px 10px 10px 40px; /* Reduced left padding from 50px to 40px */
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -60,12 +59,11 @@
   gap: 20px;
 }
 
+.restaurant-card-wrapper {
+  position: relative;
+}
+
 .restaurant-card {
-  /* border: 2px solid #e6e6fa;
-  padding: 15px;
-  border-radius: 5px;
-  background-color: #f0f8ff;
-  position: relative; */
   padding: 1rem;
   background-color: rgba(249, 212, 0, 0.5);
   border-radius: 0.5rem;
@@ -75,16 +73,28 @@
 .restaurant-card h3 {
   margin: 0 0 10px 0;
 }
-.slick-track img{
+
+.card-content {
+  position: relative;
+  width: 100%;
+}
+
+.slides img {
   width: 100%;
   max-width: 400px;
   height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
 }
-.card-cotent {
-  position: relative;
+
+.card-content > img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
 }
+
 .rating {
-  /* margin-bottom: 10px; */
   background-color: rgba(0, 0, 0, 0.5);
   padding: 5px;
   border-radius: 5px;
@@ -93,6 +103,28 @@
   right: 10px;
   z-index: 1;
 }
+
+.discount-button {
+  position: absolute;
+  bottom: 40px;
+  left: 7px; /* Moved to top-left */
+  background-color: #f6d100;
+  color: rgba(239, 94, 3, 0.808);
+  
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.discount-button:hover {
+  background-color: #e5633a;
+  color: rgb(253, 254, 152);
+}
+
 .bottom {
   width: 100%;
   position: absolute;
@@ -102,88 +134,92 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .bottom > p {
   color: white;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
   padding: 5px;
 }
-.average{
+
+.average {
   margin-left: 10px;
 }
+
 .distance {
   margin-right: 10px;
 }
+
 .slick-dots {
   display: none !important;
 }
-/* .restaurant-card p {
-  margin: 5px 0;
-} */
+
 .side-menu-mask {
-position: fixed;
-left: 0;
-top: 0;
-width: 100%;
-height: 100vh;
-background: rgba(0, 0, 0, 0.6);
-z-index: 1000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
 }
+
 .side-menu {
-/* position: fixed;
-left: 0;
-top: 0; */
-width: 70%;
-height: 100vh;
-background: #eee;
+  width: 70%;
+  height: 100vh;
+  background: #eee;
 }
+
 .account {
-background-color: #fff;
-padding: 1rem;
-border-bottom-left-radius: 10px;
-border-bottom-right-radius: 10px;
-display: flex;
-align-items: center;
+  background-color: #fff;
+  padding: 1rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  align-items: center;
 }
+
 .avarta {
-width: 40px;
-height: 40px;
-/* position: fixed; */
-/* top: 16px;
-left: 20px; */
-border-radius: 20px;
-z-index: 100;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  z-index: 100;
 }
+
 .info {
-margin-left: 10px;
+  margin-left: 10px;
 }
-.info >p{
-margin: 0;
+
+.info > p {
+  margin: 0;
 }
-.info >p.des{
-color: rgb(151 130 10 / 50%);
+
+.info > p.des {
+  color: rgb(151 130 10 / 50%);
 }
 
 .menu {
-padding: 1rem;
-background-color: #fff;
-border-radius: 10px;
-margin-top: 20px;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-top: 20px;
 }
+
 .menu > div {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .menu .cart {
-width: 25px;
-height: 25px;
-margin-right: 10px;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
 }
+
 .close {
-position: absolute;
-right: 30%;
-top: 0px;
-width: 2rem;
-height: 2rem;
+  position: absolute;
+  right: 30%;
+  top: 0px;
+  width: 2rem;
+  height: 2rem;
 }
