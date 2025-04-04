@@ -1,10 +1,9 @@
 // src/Menu.js
 import React, { useState, useEffect } from "react";
-import { FaPlus, FaShoppingCart, FaArrowDown, FaMinus, FaInfoCircle } from "react-icons/fa";
+import { FaPlus, FaShoppingCart, FaArrowDown, FaMinus, FaInfoCircle,FaMapMarkerAlt } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaStar, FaRegStar, FaArrowLeft } from "react-icons/fa";
 import "./Menu.css";
-
 const languageCodes = { en: "en", swe: "sv", es: "es" };
 
 // Local cache for translations
@@ -178,12 +177,18 @@ const Menu = () => {
                 </div>
               </div>
               <h2 className="restaurant-title">{menuData.restaurant_name}</h2>
-              <div className="info-button">
+              <div className="header-buttons">
                 <button
+                  className="info-button"
                   onClick={() => navigate(`/restaurant-info/${rId}`)}
-                  style={{ display: "flex", alignItems: "center", gap: "5px" }}
                 >
                   <FaInfoCircle /> Info
+                </button>
+                <button 
+                  className="maps-button"
+                  onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(menuData.restaurant_name)}`, '_blank')}
+                >
+                  <FaMapMarkerAlt /> Map
                 </button>
               </div>
               <div className="language-switcher">

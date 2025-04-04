@@ -446,3 +446,44 @@
   color: #c15b02;
 }
 
+.header-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* Update the existing info-button rule to remove its container styles */
+.info-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Add styles for the maps button */
+.maps-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.info-button:hover, .maps-button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Remove the old .info-button container styles */
+.info-button-container {
+  display: none;
+}
