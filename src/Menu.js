@@ -1,51 +1,69 @@
-// src/Menu.js
 import React, { useState, useEffect } from "react";
-import { FaPlus, FaShoppingCart, FaArrowDown, FaMinus, FaInfoCircle,FaMapMarkerAlt } from "react-icons/fa";
+import { FaPlus, FaShoppingCart, FaArrowDown, FaMinus, FaInfoCircle, FaMapMarkerAlt } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaStar, FaRegStar, FaArrowLeft } from "react-icons/fa";
 import "./Menu.css";
-const languageCodes = { en: "en", swe: "sv", es: "es" };
+const languageCodes = { en: "en", swe: "sv", es: "es", it: "it", zh: "zh" }; // Added Mandarin Chinese
 
 // Local cache for translations
 const translationCache = {
   en: {},
   swe: {},
   es: {},
+  it: {},
+  zh: {}, // Added Chinese
 };
 
-// Simulated translateText function (assuming your API is working)
 const translateText = async (text, targetLang) => {
   if (translationCache[targetLang][text]) {
-    return translationCache[targetLang][text]; // Return cached translation
-  }
-
-  if (targetLang === "en") {
-    translationCache.en[text] = text;
-    return text;
+    console.log(`Cache hit for "${text}" in ${targetLang}: ${translationCache[targetLang][text]}`);
+    return translationCache[targetLang][text];
   }
 
   try {
+    console.log(`Attempting to translate "${text}" to ${targetLang}`);
+    const sourceLang = "sv"; // Hardcoded as Swedish from menuData
+
+    if (sourceLang === languageCodes[targetLang]) {
+      console.log(`Source (${sourceLang}) matches target (${targetLang}), skipping`);
+      translationCache[targetLang][text] = text;
+      return text;
+    }
+
     const response = await fetch("http://localhost:5000/translate", {
       method: "POST",
       body: JSON.stringify({
         q: text,
-        source: "en",
+        source: sourceLang,
         target: languageCodes[targetLang],
         format: "text",
       }),
       headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
+
     if (data.error) {
-      console.error("LibreTranslate error:", data.error);
-      return text; // Fallback to English on error
+      console.error(`Translation error for "${text}":`, data.error);
+      const words = text.split(" ");
+      if (words.length > 1) {
+        const translatedWords = await Promise.all(
+          words.map(word => translateText(word, targetLang))
+        );
+        const translatedText = translatedWords.join(" ");
+        translationCache[targetLang][text] = translatedText;
+        return translatedText;
+      }
+      translationCache[targetLang][text] = text;
+      return text;
     }
+
     const translatedText = data.translatedText;
-    translationCache[targetLang][text] = translatedText; // Cache the result
+    console.log(`Translated "${text}" to ${targetLang}: ${translatedText}`);
+    translationCache[targetLang][text] = translatedText;
     return translatedText;
   } catch (error) {
-    console.error("LibreTranslate error:", error);
-    return text; // Fallback to English on error
+    console.error(`Network error translating "${text}":`, error);
+    return text;
   }
 };
 
@@ -60,13 +78,12 @@ const Menu = () => {
   const [translatedDishes, setTranslatedDishes] = useState([]);
   const navigate = useNavigate();
 
-  // Load the script dynamically
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "/restaurant_data/Giorgio's Italiano/menuData.js";
     script.async = true;
     script.onload = () => {
-      console.log("menuData.js loaded:", window.RestaurantData); // Debug log
+      console.log("menuData.js loaded:", window.RestaurantData);
       setMenuData(window.RestaurantData);
     };
     script.onerror = () => {
@@ -74,13 +91,11 @@ const Menu = () => {
     };
     document.body.appendChild(script);
 
-    // Cleanup
     return () => {
       document.body.removeChild(script);
     };
   }, []);
 
-  // Translate dishes when menuData or language changes
   useEffect(() => {
     if (!menuData) return;
     const translateDishes = async () => {
@@ -100,17 +115,11 @@ const Menu = () => {
   }
 
   const filteredDishes = translatedDishes.filter((dish) => {
-    // Check if a dietary filter is active
     const isDietaryFilterActive = ["Vegetarian", "Vegan", "Halal", "Gluten-Free"].includes(activeCategory);
-
-    // Handle category filtering
     const isCategoryMatch =
       isDietaryFilterActive || activeCategory === "All" || dish.category === activeCategory;
-
-    // Handle dietary filtering
     const isDietaryMatch =
       !isDietaryFilterActive || (dish.dietary && dish.dietary.includes(activeCategory));
-
     return isCategoryMatch && isDietaryMatch;
   });
 
@@ -193,7 +202,7 @@ const Menu = () => {
               </div>
               <div className="language-switcher">
                 <button onClick={toggleLangMenu} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                  {language === "swe" ? "SWE" : language === "es" ? "SPA" : "ENG"}
+                  {language === "swe" ? "SWE" : language === "es" ? "SPA" : language === "it" ? "ITA" : language === "zh" ? "中文" : "ENG"}
                 </button>
                 {isLangMenuOpen && (
                   <div className="language-dropdown">
@@ -215,11 +224,22 @@ const Menu = () => {
                     >
                       SPA
                     </button>
+                    <button
+                      onClick={() => changeLanguage("it")}
+                      style={{ display: "flex", alignItems: "center", gap: "2px", width: "100%" }}
+                    >
+                      ITA
+                    </button>
+                    <button
+                      onClick={() => changeLanguage("zh")}
+                      style={{ display: "flex", alignItems: "center", gap: "2px", width: "100%" }}
+                    >
+                      中文
+                    </button>
                   </div>
                 )}
               </div>
             </div>
-            {/* Dietary filter */}
             <div className="dietary-filter">
               {["All", "Vegetarian", "Vegan", "Halal", "Gluten-Free"].map((diet) => (
                 <button
@@ -250,7 +270,7 @@ const Menu = () => {
                   <div
                     key={dish.id}
                     className="dish-card"
-                    onClick={() => navigate(`/dish/${dish.id}`)} // Navigate to DishDetails
+                    onClick={() => navigate(`/dish/${dish.id}`)}
                   >
                     <h3 className="dish-title">{dish.name}</h3>
                     <div className="dish-container">

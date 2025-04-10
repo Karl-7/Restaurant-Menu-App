@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaStar, FaRegStar ,FaArrowLeft} from "react-icons/fa";
+import { FaStar, FaRegStar, FaArrowLeft } from "react-icons/fa";
 import "./DishDetails.css";
 
 const DishDetails = () => {
@@ -13,41 +13,81 @@ const DishDetails = () => {
   const [translatedDescription, setTranslatedDescription] = useState("");
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
-  const languageCodes = { en: "en", swe: "sv", es: "es" };
+  const languageCodes = { en: "en", swe: "sv", es: "es", it: "it", zh: "zh" }; // Added Italian and Chinese
 
   const translationCache = {
     en: {},
     swe: {},
     es: {},
+    it: {}, // Added Italian
+    zh: {}, // Added Chinese
   };
 
   const translateText = useCallback(async (text, targetLang) => {
-    if (translationCache[targetLang][text]) return translationCache[targetLang][text];
-    if (targetLang === "en") {
-      translationCache.en[text] = text;
-      return text;
+    if (translationCache[targetLang][text]) {
+      console.log(`Cache hit for "${text}" in ${targetLang}: ${translationCache[targetLang][text]}`);
+      return translationCache[targetLang][text];
     }
+
     try {
+      console.log(`Attempting to translate "${text}" to ${targetLang}`);
+      // Detect the source language
+      const detectResponse = await fetch("http://localhost:5000/detect", {
+        method: "POST",
+        body: JSON.stringify({ q: text }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const detectData = await detectResponse.json();
+
+      if (detectData.error || !detectData[0]?.language) {
+        console.error(`Language detection error for "${text}":`, detectData.error);
+        translationCache[targetLang][text] = text;
+        return text;
+      }
+
+      const sourceLang = detectData[0].language;
+      console.log(`Detected source language for "${text}": ${sourceLang}`);
+
+      if (sourceLang === languageCodes[targetLang]) {
+        console.log(`Source (${sourceLang}) matches target (${targetLang}), skipping`);
+        translationCache[targetLang][text] = text;
+        return text;
+      }
+
       const response = await fetch("http://localhost:5000/translate", {
         method: "POST",
         body: JSON.stringify({
           q: text,
-          source: "en",
+          source: sourceLang,
           target: languageCodes[targetLang],
           format: "text",
         }),
         headers: { "Content-Type": "application/json" },
       });
       const data = await response.json();
+
       if (data.error) {
-        console.error("LibreTranslate error:", data.error);
+        console.error(`Translation error for "${text}":`, data.error);
+        // Fallback: split and translate words individually
+        const words = text.split(" ");
+        if (words.length > 1) {
+          const translatedWords = await Promise.all(
+            words.map(word => translateText(word, targetLang))
+          );
+          const translatedText = translatedWords.join(" ");
+          translationCache[targetLang][text] = translatedText;
+          return translatedText;
+        }
+        translationCache[targetLang][text] = text;
         return text;
       }
+
       const translatedText = data.translatedText;
+      console.log(`Translated "${text}" to ${targetLang}: ${translatedText}`);
       translationCache[targetLang][text] = translatedText;
       return translatedText;
     } catch (error) {
-      console.error("LibreTranslate error:", error);
+      console.error(`Network error translating "${text}":`, error);
       return text;
     }
   }, [languageCodes]);
@@ -84,7 +124,6 @@ const DishDetails = () => {
     loadData();
   }, []);
 
-  // Add this new useEffect to handle translations
   useEffect(() => {
     if (!restaurantData) return;
     
@@ -138,7 +177,6 @@ const DishDetails = () => {
     <div className="detail-body">
       <div className="background" style={backgroundStyle}></div>
       <div className="dish-detail-container">
-        {/* Add the new back button here */}
         <div className="detail-back-button-container">
           <button onClick={() => navigate(-1)} className="detail-back-button">
             <FaArrowLeft />
@@ -157,13 +195,15 @@ const DishDetails = () => {
           </div>
           <div className="detail-language-switcher">
             <button onClick={toggleLangMenu}>
-              {language === "swe" ? "SWE" : language === "es" ? "SPA" : "ENG"}
+              {language === "swe" ? "SWE" : language === "es" ? "SPA" : language === "it" ? "ITA" : language === "zh" ? "中文" : "ENG"}
             </button>
             {isLangMenuOpen && (
               <div className="detail-language-dropdown">
                 <button onClick={() => changeLanguage("en")}>ENG</button>
                 <button onClick={() => changeLanguage("swe")}>SWE</button>
                 <button onClick={() => changeLanguage("es")}>SPA</button>
+                <button onClick={() => changeLanguage("it")}>ITA</button>
+                <button onClick={() => changeLanguage("zh")}>中文</button>
               </div>
             )}
           </div>
@@ -191,7 +231,6 @@ const DishDetails = () => {
             <p>No comments yet for this dish.</p>
           )}
         </div>
-        {/* Remove the old back button from here */}
       </div>
     </div>
   );

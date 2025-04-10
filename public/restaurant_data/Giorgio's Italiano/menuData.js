@@ -1,14 +1,67 @@
 window.RestaurantData = {
   dish_list: [
-    { id: "Margherita1", name: "Margherita", category: "Pizza", dietary: ["Vegetarian"], price: "95kr", rating: 5, image: "Margherita.jpg", category: "Pizza", description: "The Original Pizza!"  },
-    { id: "Pepperoni1", name: "Diavola", category: "Pizza", dietary: ["Halal"], price: "105kr", rating: 4, image: "pepperoni.jpg", category: "Pizza", description: "The Spicy Pizza!" },
-    { id: "Salad1", name: "Giorgio's Salad", dietary: ["Vegetarian","Vegan","Gluten-Free"], price: "45kr", rating: 4, image: "Salad.jpg", category: "Salads", description: "The best salad in town!" },
-    { id: "pasta1", name: "Giorgio's No.1 Pasta", dietary: ["Vegetarian"], price: "57kr", rating: 5, image: "pasta 1.jpg", category: "Pasta", description: "The best pasta in town!" },
-    { id: "burger1", name: "Giorgio's burger (bought from MAX)", dietary: ["Halal"], price: "77kr", rating: 4, image: "burger 1.jpg", category: "Burgers", description: "The best burger in town!" },
-    { id: "lasagna1", name: "Giorgio's Lasagna (takes 20 hrs)", dietary: [], price: "37kr", rating: 3, image: "lasagna 1.jpg", category: "Others", description: "The best lasagna in town!" },
-  
+    {
+      id: "Margherita1",
+      name: "Margherita Pizza", // Adjusted to standard English order
+      category: "Pizza",
+      dietary: ["Vegetarian"],
+      price: "95kr",
+      rating: 5,
+      image: "Margherita.jpg",
+      description: "Klassisk pizza med tomatsås, färsk mozzarella och färsk basilika. En enkel men smakrik kombination som aldrig går ur tiden."
+    },
+    {
+      id: "Pepperoni1",
+      name: "Diavola Pizza", // Adjusted to standard English order
+      category: "Pizza",
+      dietary: ["Halal"],
+      price: "105kr",
+      rating: 4,
+      image: "pepperoni.jpg",
+      description: "Krispig pizza med stark salame piccante, smält ost och tomatsås. Perfekt för den som gillar lite hetta i varje tugga."
+    },
+    {
+      id: "Salad1",
+      name: "Giorgio's Salad",
+      category: "Salads",
+      dietary: ["Vegetarian", "Vegan", "Gluten-Free"],
+      price: "45kr",
+      rating: 4,
+      image: "Salad.jpg",
+      description: "Fräsch blandning av grönsaker, krispig sallad, tomat, gurka och dressing. Ett lätt men mättande alternativ som passar alla."
+    },
+    {
+      id: "pasta1",
+      name: "Giorgio's Pasta",
+      category: "Pasta",
+      dietary: ["Vegetarian"],
+      price: "57kr",
+      rating: 5,
+      image: "pasta 1.jpg",
+      description: "Al dente kokt pasta med krämig sås, vitlök och färska örter. En italiensk klassiker som värmer både mage och hjärta."
+    },
+    {
+      id: "burger1",
+      name: "Giorgio's Burger",
+      category: "Burgers",
+      dietary: ["Halal"],
+      price: "77kr",
+      rating: 4,
+      image: "burger 1.jpg",
+      description: "Saftig nötköttsbiff i ett mjukt bröd med sallad, tomat, lök och dressing. En modern favorit som mättar och smakar fantastiskt."
+    },
+    {
+      id: "lasagna1",
+      name: "Giorgio's Lasagna",
+      category: "Others",
+      dietary: [],
+      price: "37kr",
+      rating: 3,
+      image: "lasagna 1.jpg",
+      description: "Lagrad ost, köttfärssås och pastaplattor i lager, gratinerad till perfektion. En rustik rätt med rik smak och härlig textur."
+    }
   ],
-  categories: ["All", "Pasta", "Burgers", "Salads","Others"],
+  categories: ["All", "Pasta", "Burgers", "Salads", "Others"],
   restaurant_name: "Giorgio's Italiano",
   restaurant_description: "The best Italian food in town!",
   restaurant_pic: "restaurant.jpg",
@@ -18,4 +71,3 @@ window.RestaurantData = {
   restaurant_website: "www.giorgiositaliano",
   student_discount: "discount.jpg"
 };
-
