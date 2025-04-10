@@ -18,10 +18,11 @@ function RestaurantCard({ name, rating, imageList, price, distance, onDiscountCl
 
   const renderStars = (rating) => {
     const stars = [];
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 0; i < rating; i++) {
       stars.push(
         <span key={i} style={{ color: i <= rating ? 'gold' : 'gray' }}>
-          ★
+          {/* ★ */}
+          ⭐
         </span>
       );
     }

@@ -37,20 +37,35 @@
   margin-bottom: 20px;
   display: flex;
   gap: 10px;
+  overflow-x: auto;           /* Enable horizontal scrolling */
+  white-space: nowrap;        /* Prevent wrapping */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  padding-bottom: 10px;       /* Space for scrollbar */
+}
+
+/* Optional: Customize scrollbar appearance */
+.filters::-webkit-scrollbar {
+  height: 8px;
+}
+
+.filters::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
 }
 
 .filter-button {
   padding: 0.25rem 0.75rem;
   border-radius: 0.25rem;
-  background-color: #e5e7eb;
-  color: #000;
+  background-color: #d1fae5; /* Light green background */
+  color: #065f46; /* Dark green text */
   text-align: center;
   cursor: pointer;
+  flex-shrink: 0;            /* Prevent buttons from shrinking */
 }
 
 .filter-button.active {
-  background-color: #f7e478;
-  color: #c15b02;
+  background-color: #10b981; /* Active state: darker green */
+  color: white;
 }
 
 .recommendations {
@@ -108,9 +123,8 @@
   position: absolute;
   bottom: 40px;
   left: 7px; /* Moved to top-left */
-  background-color: #f6d100;
-  color: rgba(239, 94, 3, 0.808);
-  
+  background-color: #e5633a;
+  color: rgb(253, 254, 152);
   padding: 5px 10px;
   border-radius: 5px;
   border: none;
@@ -121,8 +135,8 @@
 }
 
 .discount-button:hover {
-  background-color: #e5633a;
-  color: rgb(253, 254, 152);
+  background-color: #f6d100;
+  color: rgba(239, 94, 3, 0.808);
 }
 
 .bottom {
